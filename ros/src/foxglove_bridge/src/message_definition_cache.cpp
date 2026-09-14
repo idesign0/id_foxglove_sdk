@@ -6,6 +6,7 @@
 #include <optional>
 #include <regex>
 #include <set>
+#include <map>
 #include <string>
 #include <unordered_set>
 #include <utility>
