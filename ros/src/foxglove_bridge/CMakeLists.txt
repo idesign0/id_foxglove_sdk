@@ -97,6 +97,15 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_SYSTEM_PROCESSOR STREQUAL "aarc
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
   set(FOXGLOVE_SDK_PLATFORM "x86_64-unknown-linux-gnu")
   set(FOXGLOVE_SDK_SHA "71bf8ded6907f2abb528b7844d9d441d82b93e0679c88724fc1144e6567be2d9")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin" AND CMAKE_SYSTEM_PROCESSOR STREQUAL "arm64")
+  # macOS: upstream publishes these dist zips, the gate above just never listed them.
+  # The SDK's own foxglove-static-platform-links.cmake already has an APPLE branch
+  # (-framework Security, -framework CoreFoundation), so the package supports macOS.
+  set(FOXGLOVE_SDK_PLATFORM "aarch64-apple-darwin")
+  set(FOXGLOVE_SDK_SHA "74454dcedac00fab8f1dd5308f88b101f87d15bf67e99e53def8d5dd11d05a81")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin" AND CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
+  set(FOXGLOVE_SDK_PLATFORM "x86_64-apple-darwin")
+  set(FOXGLOVE_SDK_SHA "b3a521bdc2d2959dc1975b6f16b21472160544abb482a92a7597153c86e2a144")
 else()
   message(FATAL_ERROR "Unsupported platform/architecture combination: ${CMAKE_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}")
 endif()
